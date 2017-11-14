@@ -1,25 +1,31 @@
 # Imports the heapq allowing us to use the heap structure in prims algorithm
 import heapq
 
-V = 3
-array = [[0]*V]*V
-array[0] = [0,6,2]
-array[1] = [6,0,10]
-array[2] = [2,10,0]
+inp = open("input.txt", "r");
 
-print(array)
+i = 0;
+j = 0;
 
-Tv = []
-Te = []
-h  = []
+things = [[int(n) for n in line.rstrip("\n").split(",")]for line in inp];	
+X = things[0][0];
+array = [[0]*X]*X;
+for i in range(X):
+	array[i] = things[i+1]
+
+Tv  = []
+Te  = []
+h   = []
+ans = 0
 
 v  = 0
 
 Tv.append(v)
-for i in range(0,V) :
+for i in range(0,X) :
   if ( i != v ) :
     heapq.heappush(h, (array[v][i],i))
 
 while (len(h) != 0) :
-  ue = heappop(h)
-  if ( 
+  ue = heapq.heappop(h)
+  ans = ans + ue[0] 
+
+print(ans)
